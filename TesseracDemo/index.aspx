@@ -26,6 +26,8 @@
             <button id="bitMap" type="submit" class="btn btn-default" onserverclick="bitMap_ServerClick" runat="server">Bitmap</button>
 
             <button id="byte" type="submit" class="btn btn-default" onserverclick="byte_ServerClick" runat="server">Bytes array</button>
+
+            <button id="googleVision" type="submit" class="btn btn-default" onserverclick="googleVision_ServerClick" runat="server">Google Vision</button>
         </fieldset>
 
         <fieldset>

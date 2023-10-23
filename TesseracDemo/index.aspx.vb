@@ -1,5 +1,5 @@
-﻿Imports System.Drawing
-Imports System.IO
+﻿Imports System.IO
+Imports Google.Cloud.Vision.V1
 Imports Tesseract
 
 Public Class index
@@ -51,11 +51,6 @@ Public Class index
     Protected Sub bitMap_ServerClick(sender As Object, e As EventArgs)
         Try
             'CONVERTIR A BITMAP
-            Dim inputStream As Stream = imageFile.PostedFile.InputStream
-            Dim bitmap As New Bitmap(inputStream)
-
-            Using engine = New TesseractEngine(Server.MapPath("~/tessdata"), "spa", EngineMode.Default)
-            End Using
 
         Catch ex As Exception
 
@@ -78,6 +73,44 @@ Public Class index
                     End Using
                 End Using
             End Using
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Protected Sub googleVision_ServerClick(sender As Object, e As EventArgs)
+        Try
+            Dim text As String = ""
+            'Guardar la imagen
+            Dim inputStream As Stream = imageFile.PostedFile.InputStream
+            Dim rutaDestino As String = Server.MapPath("~/img/texto.jpg")
+            Dim outputStream As New FileStream(rutaDestino, FileMode.Create)
+
+            Dim buffer(4096) As Byte
+            Dim bytesRead As Integer
+            Do
+                bytesRead = inputStream.Read(buffer, 0, buffer.Length)
+                If bytesRead > 0 Then
+                    outputStream.Write(buffer, 0, bytesRead)
+                End If
+            Loop While bytesRead > 0
+
+            ' Cierra los flujos de entrada y salida
+            inputStream.Close()
+            outputStream.Close()
+
+            Dim image As Image = Image.FromFile(rutaDestino)
+            Dim client = ImageAnnotatorClient.Create()
+            Dim textAnnotations = client.DetectText(image)
+            'For Each item In textAnnotations
+            '    text += item.Description
+            'Next
+            Try
+                text = textAnnotations(0).Description
+            Catch ex As Exception
+                text = "No se pudo detectar el texto"
+            End Try
+            resultText.InnerText = text
         Catch ex As Exception
 
         End Try

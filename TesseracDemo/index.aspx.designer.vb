@@ -59,6 +59,15 @@ Partial Public Class index
     Protected WithEvents [byte] As Global.System.Web.UI.HtmlControls.HtmlButton
 
     '''<summary>
+    '''Control googleVision.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents googleVision As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
     '''Control meanConfidenceLabel.
     '''</summary>
     '''<remarks>

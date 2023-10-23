@@ -82,6 +82,15 @@ Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
+<member name="F:TesseracDemo.index._googleVision">
+<summary>
+Control googleVision.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
 <member name="F:TesseracDemo.index._meanConfidenceLabel">
 <summary>
 Control meanConfidenceLabel.
